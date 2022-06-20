@@ -27,16 +27,16 @@ const post = [
     {
         id: 1,
         name: 'Liam Willstone',
-        profilePhoto: 'https://i.picsum.photos/id/653/300/300.jpg?hmac=hF6OcvJSGl31yRN1m7iHxShvwbPLYvNv3yPimTdbGDE',
+        profilePhoto: 'https://i.picsum.photos/id/28/300/300.jpg?hmac=G2cdhmuBEY2rDoSefRxiQLssBctP0GCKz_UhmEU1JIA',
         publishDate: '06/22/2019',
         postDescription: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
-        postImage: 'https://i.picsum.photos/id/17/300/300.jpg?hmac=KxvSSOugjB6gpoBNWDjhfj5DxC8fvBVrp-vDzzFAMPo',
+        postImage: null,
         likesCounter: 239
     },
     {
         id: 1,
         name: 'Anya West',
-        profilePhoto: 'https://i.picsum.photos/id/653/300/300.jpg?hmac=hF6OcvJSGl31yRN1m7iHxShvwbPLYvNv3yPimTdbGDE',
+        profilePhoto: 'https://i.picsum.photos/id/300/300/300.jpg?hmac=wrp7T9sii9wxZpkh94Y1rS1UmaSPesyuK2zFta_g8Zo',
         publishDate: '06/22/2019',
         postDescription: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         postImage: 'https://i.picsum.photos/id/9/300/300.jpg?hmac=Zf_elnyFDTPzb9nUe7m1J5g080C689yQsh3U8_DhHWE',
@@ -48,6 +48,10 @@ console.log('Array post', post);
 
 // STAMPARE I DATI DELL'ARRAY POST NELL'HTML 
 const allPost = allPostFun(post);
+// AL CLICK DEL MI PIACE CAMBIA COLORE E AUMENTA IL CONTEGGIO DEI LIKES
+// const likeBtn = document.querySelector('.js-like-button');
+// likeBtn.addEventListener('click', addLikes);
+
 
 
 
@@ -85,9 +89,9 @@ function drawAllInfoPost(info) {
             </div>
         </div>
         <div class="post__text">${postDescription}</div>
-        <div class="post__image">
-            <img src="${postImage}" alt="">
-        </div>
+        
+        ${postImage === null ? '' : getPostImage(postImage)}
+        
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
@@ -106,3 +110,18 @@ function drawAllInfoPost(info) {
 
     postList.innerHTML += newPost;
 }
+
+
+
+
+// ------------------------
+//   UTILITIES FUNCTION
+// ------------------------
+function getPostImage(postedImage) {
+    return `
+    <div class="post__image">
+        <img src="${postedImage}" alt="">
+    </div>
+    `
+}
+
