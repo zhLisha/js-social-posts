@@ -30,7 +30,7 @@ const post = [
     {
         id: 1,
         name: 'Anya West',
-        profilePhoto: 'https://i.picsum.photos/id/300/300/300.jpg?hmac=wrp7T9sii9wxZpkh94Y1rS1UmaSPesyuK2zFta_g8Zo',
+        profilePhoto: null,
         publishDate: currentDate,
         postDescription: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         postImage: 'https://i.picsum.photos/id/9/300/300.jpg?hmac=Zf_elnyFDTPzb9nUe7m1J5g080C689yQsh3U8_DhHWE',
@@ -110,9 +110,7 @@ function drawAllInfoPost(info) {
     <div class="post">
         <div class="post__header">
             <div class="post-meta">                    
-                <div class="post-meta__icon">
-                <img class="profile-pic" src="${profilePhoto}" alt="Phil Mangione">                    
-            </div>
+                ${profilePhoto === null ? getProfileImageDefault() : getProfileImage(profilePhoto)}
                 <div class="post-meta__data">
                     <div class="post-meta__author">${name}</div>
                     <div class="post-meta__time">${publishDate}</div>
@@ -121,7 +119,7 @@ function drawAllInfoPost(info) {
         </div>
         <div class="post__text">${postDescription}</div>
         
-        ${postImage === null ? '' : getPostImage(postImage)}
+        ${postImage === null ? `` : getPostImage(postImage)}
         
         <div class="post__footer">
             <div class="likes js-likes">
@@ -151,6 +149,22 @@ function getPostImage(postedImage) {
     return `
     <div class="post__image">
         <img src="${postedImage}" alt="">
+    </div>
+    `
+}
+
+function getProfileImage(photoProfile) {
+    return ` 
+    <div class="post-meta__icon">
+        <img class="profile-pic" src="${photoProfile}" alt="Phil Mangione">                    
+    </div>
+    `
+}
+
+function getProfileImageDefault() {
+    return ` 
+    <div class="post-meta__icon profile-pic-default">
+        AW                    
     </div>
     `
 }
