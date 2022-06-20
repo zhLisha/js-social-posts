@@ -76,6 +76,23 @@ for(let i = 0; i < likeBtn.length; i++) {
                 
             // Inseriamo il numero incrementato nell'HTML
             relatedLike.innerHTML = numerOfLikes;
+        } 
+        // Se contiene la classe Like Button Liked, allora al secondo click rimuoviamo la classe e togliemo il conteggio del like
+        else{
+            // Rimuoviamo la classe
+            this.classList.remove('like-button--liked') 
+
+             // Scorriamo anche la lista dei likes effettivi per indicizzazione
+             const relatedLike = allLikes[i];
+
+             // Ci prendiamo il valore dei like ottenuti e li trasformiamo in numeri
+             let numerOfLikes = parseInt(relatedLike.innerHTML);
+ 
+             // Aggiungiamo di 1
+             numerOfLikes--;
+                 
+             // Inseriamo il numero incrementato nell'HTML
+             relatedLike.innerHTML = numerOfLikes;
         }
     });
    
