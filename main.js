@@ -44,14 +44,51 @@ const post = [
     }
 ]
 
-console.log('Array post', post);
 
 // STAMPARE I DATI DELL'ARRAY POST NELL'HTML 
 const allPost = allPostFun(post);
-// AL CLICK DEL MI PIACE CAMBIA COLORE E AUMENTA IL CONTEGGIO DEI LIKES
-// const likeBtn = document.querySelector('.js-like-button');
-// likeBtn.addEventListener('click', addLikes);
 
+
+
+// -------------------------------
+//         LIKE BTN EVENT
+// -------------------------------
+// AL CLICK DEL MI PIACE CAMBIA COLORE E AUMENTA IL CONTEGGIO DEI LIKES
+const likeBtn = document.querySelectorAll('.js-like-button');
+const allLikes = document.querySelectorAll('.js-likes-counter')
+// Scorro tutti i BTN di likeBtn
+for(let i = 0; i < likeBtn.length; i++) {
+    const allLikeBtn = likeBtn[i];
+   
+    // Inizio dell'eventi click sul bottone Mi piace
+    allLikeBtn.addEventListener('click', 
+    function(event) {
+        event.preventDefault();
+
+        // Rendiamo cliccabile solo se il BTN non ha gia' classe .like-button--liked inserito
+        if(!this.classList.contains('like-button--liked')) {
+            
+            // Aggiungiamo la classse clicked per indicare che e' gia' stata cliccata 
+            this.classList.add('like-button--liked')
+                
+            // Scorriamo anche la lista dei likes effettivi per indicizzazione
+            const relatedLike = allLikes[i];
+
+            // Ci prendiamo il valore dei like ottenuti e li trasformiamo in numeri
+            let numerOfLikes = parseInt(relatedLike.innerHTML);
+
+            // Aggiungiamo di 1
+            numerOfLikes++;
+                
+            // Inseriamo il numero incrementato nell'HTML
+            relatedLike.innerHTML = numerOfLikes;
+        }
+    });
+   
+}
+
+
+    
 
 
 
@@ -64,7 +101,7 @@ const allPost = allPostFun(post);
 function allPostFun(eachPost) {
     for(let i = 0; i < eachPost.length; i++) {
         const allPostInfo = eachPost[i];
-
+        
         drawAllInfoPost(allPostInfo);
     }
 }
@@ -110,7 +147,6 @@ function drawAllInfoPost(info) {
 
     postList.innerHTML += newPost;
 }
-
 
 
 
